@@ -133,20 +133,35 @@ function displayDataInProductList(data) {
         nameSpan.textContent = row[3];
 
         const merchantSpan = document.createElement('span');
-        merchantSpan.className = 'text-gray-400 fw-semibold d-block fs-6 mt-n1';
-        merchantSpan.textContent = row[4];
+		merchantSpan.className = 'text-gray-400 fw-semibold d-block fs-6 mt-n1';
+		merchantSpan.textContent = row[4];
 
-        titleDiv.appendChild(nameSpan);
-        titleDiv.appendChild(merchantSpan);
+		// Thêm CSS để đảm bảo tự động xuống dòng khi cần thiết
+		merchantSpan.style.maxWidth = '200px';
+		merchantSpan.style.wordBreak = 'break-word'; // Cho phép xuống dòng khi cần thiết
+		merchantSpan.style.textAlign = 'center';
+		titleDiv.style.alignItems = 'center';
+		titleDiv.appendChild(nameSpan);
+		titleDiv.appendChild(merchantSpan);
 
         infoDiv.appendChild(titleDiv);
+		
+		const campaignLink = document.createElement('a');
+		campaignLink.className = 'text-success text-end fw-bold fs-1';
+		campaignLink.textContent = row[2];
+		campaignLink.href = row[6];
+		campaignLink.target = '_blank'; // Đặt thuộc tính target để mở tab mới khi bấm vào
 
-        const campaignSpan = document.createElement('span');
-        campaignSpan.className = 'text-success text-end fw-bold fs-1';
-        campaignSpan.textContent = row[2];
+		// Thêm các thuộc tính style tương tự như thẻ <span> trước đó
+		campaignLink.style.color = 'green'; // Màu chữ
+		campaignLink.style.textAlign = 'right'; // Căn chỉnh văn bản
+		campaignLink.style.fontWeight = 'bold'; // Độ đậm của font
+		campaignLink.style.fontSize = '1rem'; // Cỡ chữ
+
+        
 
         cardBodyDiv.appendChild(infoDiv);
-        cardBodyDiv.appendChild(campaignSpan);
+        cardBodyDiv.appendChild(campaignLink);
 
         cardDiv.appendChild(cardBodyDiv);
 
