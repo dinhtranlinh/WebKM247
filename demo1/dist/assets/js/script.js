@@ -109,24 +109,36 @@ function displayDataInProductList(data) {
     const productList = document.getElementById('product_list');
 
     data.forEach((row) => {
-         const cardDiv = document.createElement('div');
+        const cardDiv = document.createElement('div');
         cardDiv.className = 'card card-flush flex-row-fluid p-6 pb-5 mw-100';
-
+		cardDiv.textContent = ''; // Bỏ trống nội dung mặc định của cardDiv
+			
         const cardBodyDiv = document.createElement('div');
         cardBodyDiv.className = 'card-body text-center';
+
+        // Tạo phần tử div bao ngoài cho hình ảnh
+        const imgContainerDiv = document.createElement('div');
+        imgContainerDiv.className = 'symbol symbol-35px symbol-circle';
+        imgContainerDiv.setAttribute('data-bs-toggle', 'tooltip');
+        imgContainerDiv.setAttribute('title', row[5]); // Đặt title từ row[3] (hoặc từ row[4] nếu cần)
 
         const img = document.createElement('img');
         img.src = row[1];
         img.className = 'rounded-3 mb-4 w-150px h-150px w-xxl-200px h-xxl-200px';
         img.alt = '';
 
-        cardBodyDiv.appendChild(img);
+        imgContainerDiv.appendChild(img); // Đặt hình ảnh vào div bao ngoài
+
+        cardBodyDiv.appendChild(imgContainerDiv);
 
         const infoDiv = document.createElement('div');
         infoDiv.className = 'mb-2';
 
         const titleDiv = document.createElement('div');
         titleDiv.className = 'text-center';
+		titleDiv.style.display = 'flex'; // Thêm thuộc tính display: flex;
+        titleDiv.style.flexDirection = 'column'; // Thêm thuộc tính flex-direction: column;
+        titleDiv.style.alignItems = 'center'; // Thêm thuộc tính align-items: center;
 
         const nameSpan = document.createElement('span');
         nameSpan.className = 'fw-bold text-gray-800 cursor-pointer text-hover-primary fs-3 fs-xl-1';
@@ -140,7 +152,7 @@ function displayDataInProductList(data) {
 		merchantSpan.style.maxWidth = '200px';
 		merchantSpan.style.wordBreak = 'break-word'; // Cho phép xuống dòng khi cần thiết
 		merchantSpan.style.textAlign = 'center';
-		titleDiv.style.alignItems = 'center';
+		titleDiv.style.alignItems = 'center';		
 		titleDiv.appendChild(nameSpan);
 		titleDiv.appendChild(merchantSpan);
 
