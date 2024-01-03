@@ -1,9 +1,10 @@
 const apiKey = 'AIzaSyDRTs9ergyHPJC5lxRcsYhuDwN2blyqYR4';
 const spreadsheetId = '1F4jD0n0-oZMPX6Cp4dIoYQMuwH-pDthWqXq_8OwMGU0';
-
+let page = 1;
+const data = [];
 document.addEventListener('DOMContentLoaded', () => {
     const rangeSheet2 = 'sheet2!A1:D10';
-    const rangeSheet1 = 'sheet1!A1:H10';
+    const rangeSheet1 = 'sheet1';
 
     gapi.load('client', () => {
         gapi.client.init({
@@ -19,6 +20,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+function updatePageNumber() {
+    document.getElementById('currentPage').textContent = currentPage;
+}
+// Tương tự cho 'previousPage' và các nút số trang khác
+
+let currentPage = 1;
+const itemsPerPage = 20;
+function paginateData(data, page, itemsPerPage) {
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return data.slice(start, end);
+}
 
 function getDataFromSheet(spreadsheetId, range) {
     gapi.client.sheets.spreadsheets.values.get({
@@ -105,10 +118,12 @@ function displayData(data) {
     });
 }
 
+
 function displayDataInProductList(data) {
     const productList = document.getElementById('product_list');
-
-    data.forEach((row) => {
+	productList.innerHTML = ''; // Xóa nội dung hiện tại
+	const paginatedData = paginateData(data, page, itemsPerPage);
+    paginatedData.forEach((row) => {
         const cardDiv = document.createElement('div');
         cardDiv.className = 'card card-flush flex-row-fluid p-6 pb-5 mw-100';
 		cardDiv.textContent = ''; // Bỏ trống nội dung mặc định của cardDiv
