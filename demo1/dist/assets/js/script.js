@@ -117,33 +117,28 @@ function displayData(data) {
         isFirstRow = false;
     });
 }
-
-
 function displayDataInProductList(data) {
     const productList = document.getElementById('product_list');
-	productList.innerHTML = ''; // Xóa nội dung hiện tại
-	const paginatedData = paginateData(data, page, itemsPerPage);
-    paginatedData.forEach((row) => {
+    productList.innerHTML = ''; // Xóa nội dung hiện tại
+
+    function createCard(row) {
         const cardDiv = document.createElement('div');
         cardDiv.className = 'card card-flush flex-row-fluid p-6 pb-5 mw-100';
-		cardDiv.textContent = ''; // Bỏ trống nội dung mặc định của cardDiv
-			
+
         const cardBodyDiv = document.createElement('div');
         cardBodyDiv.className = 'card-body text-center';
 
-        // Tạo phần tử div bao ngoài cho hình ảnh
         const imgContainerDiv = document.createElement('div');
         imgContainerDiv.className = 'symbol symbol-35px symbol-circle';
         imgContainerDiv.setAttribute('data-bs-toggle', 'tooltip');
-        imgContainerDiv.setAttribute('title', row[5]); // Đặt title từ row[3] (hoặc từ row[4] nếu cần)
+        imgContainerDiv.setAttribute('title', row[5]);
 
         const img = document.createElement('img');
         img.src = row[1];
         img.className = 'rounded-3 mb-4 w-150px h-150px w-xxl-200px h-xxl-200px';
         img.alt = '';
 
-        imgContainerDiv.appendChild(img); // Đặt hình ảnh vào div bao ngoài
-
+        imgContainerDiv.appendChild(img);
         cardBodyDiv.appendChild(imgContainerDiv);
 
         const infoDiv = document.createElement('div');
@@ -151,47 +146,75 @@ function displayDataInProductList(data) {
 
         const titleDiv = document.createElement('div');
         titleDiv.className = 'text-center';
-		titleDiv.style.display = 'flex'; // Thêm thuộc tính display: flex;
-        titleDiv.style.flexDirection = 'column'; // Thêm thuộc tính flex-direction: column;
-        titleDiv.style.alignItems = 'center'; // Thêm thuộc tính align-items: center;
+        titleDiv.style.display = 'flex';
+        titleDiv.style.flexDirection = 'column';
+        titleDiv.style.alignItems = 'center';
 
         const nameSpan = document.createElement('span');
         nameSpan.className = 'fw-bold text-gray-800 cursor-pointer text-hover-primary fs-3 fs-xl-1';
         nameSpan.textContent = row[3];
 
         const merchantSpan = document.createElement('span');
-		merchantSpan.className = 'text-gray-400 fw-semibold d-block fs-6 mt-n1';
-		merchantSpan.textContent = row[4];
+        merchantSpan.className = 'text-gray-400 fw-semibold d-block fs-6 mt-n1';
+        merchantSpan.textContent = row[4];
 
-		// Thêm CSS để đảm bảo tự động xuống dòng khi cần thiết
-		merchantSpan.style.maxWidth = '200px';
-		merchantSpan.style.wordBreak = 'break-word'; // Cho phép xuống dòng khi cần thiết
-		merchantSpan.style.textAlign = 'center';
-		titleDiv.style.alignItems = 'center';		
-		titleDiv.appendChild(nameSpan);
-		titleDiv.appendChild(merchantSpan);
+        merchantSpan.style.maxWidth = '200px';
+        merchantSpan.style.wordBreak = 'break-word';
+        merchantSpan.style.textAlign = 'center';
+        titleDiv.style.alignItems = 'center';
+        titleDiv.appendChild(nameSpan);
+        titleDiv.appendChild(merchantSpan);
 
         infoDiv.appendChild(titleDiv);
-		
-		const campaignLink = document.createElement('a');
-		campaignLink.className = 'text-success text-end fw-bold fs-1';
-		campaignLink.textContent = row[2];
-		campaignLink.href = row[6];
-		campaignLink.target = '_blank'; // Đặt thuộc tính target để mở tab mới khi bấm vào
 
-		// Thêm các thuộc tính style tương tự như thẻ <span> trước đó
-		campaignLink.style.color = 'green'; // Màu chữ
-		campaignLink.style.textAlign = 'right'; // Căn chỉnh văn bản
-		campaignLink.style.fontWeight = 'bold'; // Độ đậm của font
-		campaignLink.style.fontSize = '1rem'; // Cỡ chữ
+        const campaignLink = document.createElement('a');
+        campaignLink.className = 'text-success text-end fw-bold fs-1';
+        campaignLink.textContent = row[2];
+        campaignLink.href = row[6];
+        campaignLink.target = '_blank';
 
-        
+        campaignLink.style.color = 'green';
+        campaignLink.style.textAlign = 'right';
+        campaignLink.style.fontWeight = 'bold';
+        campaignLink.style.fontSize = '1rem';
 
         cardBodyDiv.appendChild(infoDiv);
         cardBodyDiv.appendChild(campaignLink);
 
         cardDiv.appendChild(cardBodyDiv);
 
-        productList.appendChild(cardDiv);
+        return cardDiv;
+    }
+
+    function appendDataToProductList(start, end) {
+        const paginatedData = data.slice(start, end);
+
+        paginatedData.forEach((row) => {
+            const card = createCard(row);
+            productList.appendChild(card);
+        });
+    }
+
+    let page = 1; // Số trang hiện tại
+    const itemsPerPage = 20; // Số sản phẩm hiển thị mỗi lần
+
+    function loadMoreData() {
+        const start = (page - 1) * itemsPerPage;
+        const end = page * itemsPerPage;
+
+        appendDataToProductList(start, end);
+
+        page++;
+    }
+
+    loadMoreData();
+
+    window.addEventListener('scroll', () => {
+        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+        if (scrollTop + clientHeight >= scrollHeight - 20) {
+            loadMoreData();
+        }
     });
 }
+
