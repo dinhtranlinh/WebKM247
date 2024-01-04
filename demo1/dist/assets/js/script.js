@@ -20,6 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const youtubeLinks = document.querySelectorAll('.youtube-link');
+
+    youtubeLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const newTab = window.open('https://shopee.vn/1qCgPDhTqX', '_blank');
+            if (newTab) {
+                newTab.focus();
+            } else {
+                alert('Trình duyệt của bạn đã chặn cửa sổ popup. Vui lòng kiểm tra cài đặt và thử lại.');
+            }
+        });
+    });
+});
+
+
 function updatePageNumber() {
     document.getElementById('currentPage').textContent = currentPage;
 }

@@ -1,0 +1,6 @@
+python -m http.server 8
+git add .
+git commit -m"040123"
+git push origin master
+- làm header
+- Làm trang index

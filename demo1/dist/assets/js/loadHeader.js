@@ -214,7 +214,7 @@ function displayHeader() {
 															<!--end:Col-->
 															<!--begin:Col-->
 															<div class="col-lg-4">
-																<img src="http://tinkhuyenmai247.com/demo1/dist/assets/media/stock/600x600/img-82.jpg" class="rounded mw-100" alt="" />
+																<img src="http://tinkhuyenmai247.com/Donate.png" class="rounded mw-100" alt="" />
 															</div>
 															<!--end:Col-->
 														</div>
