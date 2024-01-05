@@ -87,13 +87,13 @@ function displayHeader() {
 													<!--begin:Col-->
 													<div class="menu-more bg-light col-lg-4 py-3 px-3 py-lg-6 px-lg-6 rounded-end">
 														<!--begin:Heading-->
-														<h4 class="fs-6 fs-lg-4 text-gray-800 fw-bold mt-3 mb-3 ms-4">Link nhanh</h4>
+														<h4 class="fs-6 fs-lg-4 text-gray-800 fw-bold mt-3 mb-3 ms-4">Khóa học Shopee,Lazada,Sendo</h4>
 														<!--end:Heading-->
 														<!--begin:Menu item-->
 														<div class="menu-item p-0 m-0">
 															<!--begin:Menu link-->
-															<a href="https://www.facebook.com/cuahangmmo/posts/pfbid035JAqCV9mR8FXcRLidPARadygyc5eMSy3DhDUY6qneMZxz27n6jEjxTcgsBi9WLB9l" class="menu-link py-2" target="_blank">
-																<span class="menu-title">Khóa học Facebook Ads Nâng Cao</span>
+															<a href="TMDT/shopee-lazada-sendo-doanh-so.html" class="menu-link py-2" target="_blank">
+																<span class="menu-title">Shopee, Lazada, Sendo - Tăng Doanh Số x2 x5</span>
 															</a>
 															<!--end:Menu link-->
 														</div>
