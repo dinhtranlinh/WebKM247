@@ -92,7 +92,7 @@ function displayHeader() {
 														<!--begin:Menu item-->
 														<div class="menu-item p-0 m-0">
 															<!--begin:Menu link-->
-															<a href="TMDT/shopee-lazada-sendo-doanh-so.html" class="menu-link py-2" target="_blank">
+															<a href="https://tinkhuyenmai247.com/TMDT/shopee-lazada-sendo-doanh-so.html" class="menu-link py-2" target="_blank">
 																<span class="menu-title">Shopee, Lazada, Sendo - Tăng Doanh Số x2 x5</span>
 															</a>
 															<!--end:Menu link-->
@@ -1099,7 +1099,7 @@ function displayHeader() {
 													<!--begin:Menu item-->
 													<div class="menu-item">
 														<!--begin:Menu link-->
-														<a class="menu-link" href="YTB/seoytb.html">
+														<a class="menu-link" href="https://tinkhuyenmai247.com/YTB/seoytb.html">
 															<span class="menu-bullet">
 																<span class="bullet bullet-dot"></span>
 															</span>
