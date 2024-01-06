@@ -1099,7 +1099,7 @@ function displayHeader() {
 													<!--begin:Menu item-->
 													<div class="menu-item">
 														<!--begin:Menu link-->
-														<a class="menu-link" href="demo1/dist/ytb/seoytb.html">
+														<a class="menu-link" href="YTB/seoytb.html">
 															<span class="menu-bullet">
 																<span class="bullet bullet-dot"></span>
 															</span>
