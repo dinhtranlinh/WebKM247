@@ -1,3 +1,63 @@
+// Assume this function is called after fetching data from the spreadsheet and storing it in 'data' array
+function renderAds(data) {
+    const container = document.getElementById('fb-ad-container');
+
+    // Loop through the 'data' array to create HTML elements
+    data.forEach((row) => {
+        let div = document.createElement('div');
+        div.classList.add('menu-item', 'p-0', 'm-0');
+
+        let anchor = document.createElement('a');
+        anchor.setAttribute('href', row[2]);
+        anchor.setAttribute('target', '_blank');
+        anchor.classList.add('menu-link');
+
+        let span = document.createElement('span');
+        span.classList.add('menu-title');
+        span.textContent = row[0];
+
+        anchor.appendChild(span);
+        div.appendChild(anchor);
+        container.appendChild(div);
+    });
+}
+
+// Call the function when the DOM content is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const rangeSheet3 = 'sheet3';
+
+    gapi.load('client', () => {
+        gapi.client.init({
+            'apiKey': apiKey,
+            'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+        }).then(() => {
+            console.log('Google API client initialized successfully.');
+            getDataFromSheet3(spreadsheetId, rangeSheet3);
+        }).catch(err => {
+            console.error('Error initializing Google API client: ', err);
+        });
+    });
+});
+
+function getDataFromSheet3(spreadsheetId, range) {
+    gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: spreadsheetId,
+        range: range,
+    }).then(response => {
+        const globalData = response.result.values;
+
+        if (globalData.length > 1) {
+            const dataWithoutHeader = globalData.slice(1); // Loại bỏ hàng đầu tiên (tiêu đề)
+            renderAds(dataWithoutHeader); 
+        } else {
+            console.log('No data found.');
+        }
+    }).catch(err => {
+        console.error('Error getting data from Google Sheets API: ', err);
+    });
+}
+
+
 function displayHeader() {
     const headerHTML = 
         `
@@ -125,12 +185,12 @@ function displayHeader() {
 													<ul class="nav nav-stretch nav-line-tabs fw-bold fs-6 p-0 p-lg-10 flex-nowrap flex-grow-1">
 														<!--begin:Nav item-->
 														<li class="nav-item mx-lg-1">
-															<a class="nav-link py-3 py-lg-6 active text-active-primary" href="https://shope.ee/1qCgPDhTqX" data-bs-toggle="tab" data-bs-target="#kt_app_header_menu_pages_pages">General</a>
+															<a class="nav-link py-3 py-lg-6 active text-active-primary" href="https://shope.ee/1qCgPDhTqX" data-bs-toggle="tab" data-bs-target="#kt_app_header_menu_pages_pages">Video</a>
 														</li>
 														<!--end:Nav item-->
 														<!--begin:Nav item-->
 														<li class="nav-item mx-lg-1">
-															<a class="nav-link py-3 py-lg-6 text-active-primary" href="https://shope.ee/1qCgPDhTqX" data-bs-toggle="tab" data-bs-target="#kt_app_header_menu_pages_account">Account</a>
+															<a class="nav-link py-3 py-lg-6 text-active-primary" href="https://shope.ee/1qCgPDhTqX" data-bs-toggle="tab" data-bs-target="#kt_app_header_menu_pages_account">Tài liệu</a>
 														</li>														
 													</ul>
 												</div>
@@ -148,15 +208,10 @@ function displayHeader() {
 																	<!--begin:Col-->
 																	<div class="col-lg-3 mb-6 mb-lg-0">
 																		<!--begin:Menu heading-->
-																		<h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">User Profile</h4>
+																		<h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">Facebook Ads</h4>
 																		<!--end:Menu heading-->
 																		<!--begin:Menu item-->
-																		<div class="menu-item p-0 m-0">
-																			<!--begin:Menu link-->
-																			<a href="https://shope.ee/1qCgPDhTqX"  target="_blank" class="menu-link">
-																				<span class="menu-title">Overview</span>
-																			</a>
-																			<!--end:Menu link-->
+																		<div id="fb-ad-container">																		
 																		</div>
 																		<!--end:Menu item-->
 																		
@@ -167,7 +222,7 @@ function displayHeader() {
 																		<!--begin:Menu section-->
 																		<div class="mb-6">
 																			<!--begin:Menu heading-->
-																			<h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">Corporate</h4>
+																			<h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">Chatbot Messenger</h4>
 																			<!--end:Menu heading-->
 																			<!--begin:Menu item-->
 																			<div class="menu-item p-0 m-0">
@@ -183,7 +238,7 @@ function displayHeader() {
 																		<!--begin:Menu section-->
 																		<div class="mb-0">
 																			<!--begin:Menu heading-->
-																			<h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">Careers</h4>
+																			<h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">Facebook Marketing</h4>
 																			<!--end:Menu heading-->
 																			<!--begin:Menu item-->
 																			<div class="menu-item p-0 m-0">
@@ -1324,9 +1379,6 @@ function openTwoLinks() {
         var newTab1 = window.open(link1, '_blank');
     }
 }
-
-
-
 
 	
   
