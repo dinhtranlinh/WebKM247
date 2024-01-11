@@ -323,7 +323,7 @@ function displayHeader() {
 															<!--end:Col-->
 															<!--begin:Col-->
 															<div class="col-lg-7">
-																<img src="http://tinkhuyenmai247.com/demo1/dist/assets/media/stock/900x600/46.jpg" class="rounded mw-100" alt="" />
+																<img src="http://tinkhuyenmai247.com/demo1/dist/assets/media/donate900600.png" class="rounded mw-100" alt="" />
 															</div>
 															<!--end:Col-->
 														</div>
