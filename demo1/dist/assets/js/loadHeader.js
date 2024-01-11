@@ -1,9 +1,19 @@
 // Assume this function is called after fetching data from the spreadsheet and storing it in 'data' array
 function renderAds(data) {
-    const container = document.getElementById('fb-ad-container');
-
     // Loop through the 'data' array to create HTML elements
     data.forEach((row) => {
+        // Get the container ID from row[4]
+        const containerId = row[4];
+        
+        // Create container dynamically
+        let container = document.getElementById(containerId);
+        if (!container) {
+            // If container doesn't exist, create a new one
+            container = document.createElement('div');
+            container.id = containerId;
+            document.body.appendChild(container); // You can append it to a different parent if needed
+        }
+
         let div = document.createElement('div');
         div.classList.add('menu-item', 'p-0', 'm-0');
 
@@ -21,6 +31,7 @@ function renderAds(data) {
         container.appendChild(div);
     });
 }
+
 
 // Call the function when the DOM content is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -225,13 +236,8 @@ function displayHeader() {
 																			<h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">Chatbot Messenger</h4>
 																			<!--end:Menu heading-->
 																			<!--begin:Menu item-->
-																			<div class="menu-item p-0 m-0">
-																				<!--begin:Menu link-->
-																				<a href="https://shope.ee/1qCgPDhTqX"  target="_blank" class="menu-link">
-																					<span class="menu-title">About</span>
-																				</a>
-																				<!--end:Menu link-->
-																			</div>
+																			<div id="chatbotContent">																		
+																			</div>																			
 																			<!--end:Menu item-->																			
 																		</div>
 																		<!--end:Menu section-->
@@ -241,22 +247,8 @@ function displayHeader() {
 																			<h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">Facebook Marketing</h4>
 																			<!--end:Menu heading-->
 																			<!--begin:Menu item-->
-																			<div class="menu-item p-0 m-0">
-																				<!--begin:Menu link-->
-																				<a href="https://shope.ee/1qCgPDhTqX"  target="_blank" class="menu-link">
-																					<span class="menu-title">Careers List</span>
-																				</a>
-																				<!--end:Menu link-->
-																			</div>
-																			<!--end:Menu item-->
-																			<!--begin:Menu item-->
-																			<div class="menu-item p-0 m-0">
-																				<!--begin:Menu link-->
-																				<a href="https://shope.ee/1qCgPDhTqX"  target="_blank" class="menu-link">
-																					<span class="menu-title">Careers Apply</span>
-																				</a>
-																				<!--end:Menu link-->
-																			</div>
+																			<div id="FacebookMarketing">																		
+																			</div>	
 																			<!--end:Menu item-->
 																		</div>
 																		<!--end:Menu section-->
@@ -269,7 +261,7 @@ function displayHeader() {
 															<!--end:Col-->
 															<!--begin:Col-->
 															<div class="col-lg-4">
-																<img src="https://scontent.fhan19-1.fna.fbcdn.net/v/t39.30808-6/416332957_7270206239690088_4227369108196476674_n.jpg?stp=dst-jpg_p526x296&_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_eui2=AeFHBeYjDIqCIOzBnl7pe9Osq43I7akqGBmrjcjtqSoYGUWae26clOZ23KJp3F8WAMcSQ199KcAM8cRWoMjyDBZB&_nc_ohc=iRnc1upQb88AX8EIufI&_nc_ht=scontent.fhan19-1.fna&oh=00_AfCWQbb2dFxDEX704CaAJ95rhbLEwoF9dE3B0CZS9XXi9A&oe=659B5735" class="rounded mw-100" alt="" />
+																<img src="http://tinkhuyenmai247.com/demo1/dist/assets/media/donate.png" class="rounded mw-100" alt="" />
 															</div>
 															<!--end:Col-->
 														</div>
