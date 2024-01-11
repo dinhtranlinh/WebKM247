@@ -241,6 +241,10 @@ function displayHeader() {
 																			<!--end:Menu item-->																			
 																		</div>
 																		<!--end:Menu section-->
+																	</div>
+																	<!--end:Col-->	
+																	<!--begin:Col-->
+																	<div class="col-lg-4 mb-6 mb-lg-0">
 																		<!--begin:Menu section-->
 																		<div class="mb-0">
 																			<!--begin:Menu heading-->
