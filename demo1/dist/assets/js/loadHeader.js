@@ -286,7 +286,7 @@ function displayHeader() {
 																		<div class="menu-item p-0 m-0">
 																			<!--begin:Menu link-->
 																			<a href="https://shope.ee/1qCgPDhTqX"  target="_blank" class="menu-link">
-																				<span class="menu-title">Overview</span>
+																				<span class="menu-title">Thuật ngữ chuyên ngành</span>
 																			</a>
 																			<!--end:Menu link-->
 																		</div>
@@ -295,7 +295,7 @@ function displayHeader() {
 																		<div class="menu-item p-0 m-0">
 																			<!--begin:Menu link-->
 																			<a href="https://shope.ee/1qCgPDhTqX"  target="_blank" class="menu-link">
-																				<span class="menu-title">Settings</span>
+																				<span class="menu-title">Thông số facebook ADS</span>
 																			</a>
 																			<!--end:Menu link-->
 																		</div>
@@ -309,7 +309,7 @@ function displayHeader() {
 																		<div class="menu-item p-0 m-0">
 																			<!--begin:Menu link-->
 																			<a href="https://shope.ee/1qCgPDhTqX"  target="_blank" class="menu-link">
-																				<span class="menu-title">Statements</span>
+																				<span class="menu-title">Tổng hợp kiến thức</span>
 																			</a>
 																			<!--end:Menu link-->
 																		</div>
@@ -1223,7 +1223,7 @@ function displayHeader() {
 													<!--end:Col-->
 													<!--begin:Col-->
 													<div class="col-lg-5 mb-3 py-lg-3 pe-lg-8 d-flex align-items-center">
-														<img src="http://tinkhuyenmai247.com/demo1/dist/assets/media/stock/900x600/45.jpg" class="rounded mw-100" alt="" />
+														<img src="http://tinkhuyenmai247.com/demo1/dist/assets/media/donate900600.png" class="rounded mw-100" alt="" />
 													</div>
 													<!--end:Col-->
 												</div>
