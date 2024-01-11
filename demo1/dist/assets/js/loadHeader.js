@@ -1,15 +1,15 @@
-var apiKey = 'AIzaSyDRTs9ergyHPJC5lxRcsYhuDwN2blyqYR4';
-var spreadsheetId = '1F4jD0n0-oZMPX6Cp4dIoYQMuwH-pDthWqXq_8OwMGU0';
+var apiKey1 = 'AIzaSyDRTs9ergyHPJC5lxRcsYhuDwN2blyqYR4';
+var spreadsheetId1 = '1F4jD0n0-oZMPX6Cp4dIoYQMuwH-pDthWqXq_8OwMGU0';
 document.addEventListener('DOMContentLoaded', () => {
     const rangeSheet3 = 'sheet3';
 
     gapi.load('client', () => {
         gapi.client.init({
-            'apiKey': apiKey,
+            'apiKey': apiKey1,
             'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
         }).then(() => {
             console.log('Google API client initialized successfully.');
-            getDataFromSheet3(spreadsheetId, rangeSheet3);
+            getDataFromSheet3(spreadsheetId1, rangeSheet3);
         }).catch(err => {
             console.error('Error initializing Google API client: ', err);
         });
