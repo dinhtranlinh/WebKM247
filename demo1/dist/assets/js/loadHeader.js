@@ -1,39 +1,5 @@
-// Assume this function is called after fetching data from the spreadsheet and storing it in 'data' array
-function renderAds(data) {
-    // Loop through the 'data' array to create HTML elements
-    data.forEach((row) => {
-        // Get the container ID from row[4]
-        const containerId = row[4];
-        
-        // Create container dynamically
-        let container = document.getElementById(containerId);
-        if (!container) {
-            // If container doesn't exist, create a new one
-            container = document.createElement('div');
-            container.id = containerId;
-            document.body.appendChild(container); // You can append it to a different parent if needed
-        }
-
-        let div = document.createElement('div');
-        div.classList.add('menu-item', 'p-0', 'm-0');
-
-        let anchor = document.createElement('a');
-        anchor.setAttribute('href', row[2]);
-        anchor.setAttribute('target', '_blank');
-        anchor.classList.add('menu-link');
-
-        let span = document.createElement('span');
-        span.classList.add('menu-title');
-        span.textContent = row[0];
-
-        anchor.appendChild(span);
-        div.appendChild(anchor);
-        container.appendChild(div);
-    });
-}
-
-
-// Call the function when the DOM content is loaded
+var apiKey = 'AIzaSyDRTs9ergyHPJC5lxRcsYhuDwN2blyqYR4';
+var spreadsheetId = '1F4jD0n0-oZMPX6Cp4dIoYQMuwH-pDthWqXq_8OwMGU0';
 document.addEventListener('DOMContentLoaded', () => {
     const rangeSheet3 = 'sheet3';
 
@@ -1375,6 +1341,37 @@ function openTwoLinks() {
         var newTab1 = window.open(link1, '_blank');
     }
 }
+function renderAds(data) {
+    // Loop through the 'data' array to create HTML elements
+    data.forEach((row) => {
+        // Get the container ID from row[4]
+        const containerId = row[4];
+        
+        // Create container dynamically
+        let container = document.getElementById(containerId);
+        if (!container) {
+            // If container doesn't exist, create a new one
+            container = document.createElement('div');
+            container.id = containerId;
+            document.body.appendChild(container); // You can append it to a different parent if needed
+        }
 
+        let div = document.createElement('div');
+        div.classList.add('menu-item', 'p-0', 'm-0');
+
+        let anchor = document.createElement('a');
+        anchor.setAttribute('href', row[2]);
+        anchor.setAttribute('target', '_blank');
+        anchor.classList.add('menu-link');
+
+        let span = document.createElement('span');
+        span.classList.add('menu-title');
+        span.textContent = row[0];
+
+        anchor.appendChild(span);
+        div.appendChild(anchor);
+        container.appendChild(div);
+    });
+}
 	
   
