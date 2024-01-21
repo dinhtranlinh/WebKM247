@@ -1346,7 +1346,8 @@ function renderAds(data) {
     data.forEach((row) => {
         // Get the container ID from row[4]
         const containerId = row[4];
-        
+        var idpage1 = row[3];
+
         // Create container dynamically
         let container = document.getElementById(containerId);
         if (!container) {
@@ -1363,6 +1364,15 @@ function renderAds(data) {
         anchor.setAttribute('href', row[2]);
         anchor.setAttribute('target', '_blank');
         anchor.classList.add('menu-link');
+        
+        // Sử dụng hàm (closure) để bảo vệ giá trị của row
+        anchor.addEventListener('click', (function (rowData) {
+            return function(event) {
+                console.log('Click event triggered for row:', rowData);
+                event.preventDefault();
+                renderPage(rowData[3]);
+            }
+        })(row));
 
         let span = document.createElement('span');
         span.classList.add('menu-title');
@@ -1373,5 +1383,80 @@ function renderAds(data) {
         container.appendChild(div);
     });
 }
-	
+
+var rangeSheet4 = 'sheet4';
+function renderPage(idpage) {    
+    // Gọi hàm để lấy dữ liệu từ sheet với idpage
+    var rowData = getDataById(apiKey1, spreadsheetId1, rangeSheet3, idpage);
+
+    // Kiểm tra xem có dữ liệu không
+    if (rowData) {
+        // Bước 3: Render lại dữ liệu trang web
+        document.title = rowData[1];
+        var metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) {
+            metaDescription.content = rowData[2];
+        } else {
+            // Nếu thẻ meta chưa tồn tại, tạo mới và thêm vào head
+            var newMetaTag = document.createElement('meta');
+            newMetaTag.name = 'description';
+            newMetaTag.content = rowData[2];
+            document.head.appendChild(newMetaTag);
+        }
+    } else {
+        console.error("Không tìm thấy dữ liệu cho idpage: " + idpage);
+    }
+}
+
+// Hàm để lấy dữ liệu từ sheet theo idpage
+function getDataById(apiKey, spreadsheetId, range, idpage) {
+    return new Promise((resolve, reject) => {
+        gapi.load('client', () => {
+            gapi.client.init({
+                'apiKey': apiKey,
+                'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+            }).then(() => {
+                console.log('Google API client initialized successfully.');
+
+                // Gọi API để lấy dữ liệu từ sheet
+                gapi.client.sheets.spreadsheets.values.get({
+                    spreadsheetId: spreadsheetId,
+                    range: range,
+                }).then(response => {
+                    const globalData = response.result.values;
+
+                    // Tìm kiếm dữ liệu theo idpage
+                    const rowData = globalData.find(row => row[0] === idpage);
+
+                    if (rowData) {
+                        // Nếu tìm thấy, giải quyết Promise với dữ liệu
+                        resolve(rowData);
+                    } else {
+                        // Nếu không tìm thấy, giải quyết Promise với giá trị null
+                        resolve(null);
+                    }
+                }).catch(err => {
+                    // Xử lý lỗi khi lấy dữ liệu từ Google Sheets API
+                    reject(err);
+                });
+            }).catch(err => {
+                // Xử lý lỗi khi khởi tạo Google API client
+                reject(err);
+            });
+        });
+    });
+}
+// Sử dụng hàm getDataById
+getDataById(apiKey1, spreadsheetId1, rangeSheet4, 'id1')
+    .then(rowData => {
+        if (rowData) {
+            console.log('Data for id1:', rowData);
+            // Render trang web với dữ liệu đã lấy được
+        } else {
+            console.log('No data found for id1.');
+        }
+    })
+    .catch(err => {
+        console.error('Error getting data: ', err);
+    });	
   
